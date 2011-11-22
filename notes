@@ -1,0 +1,38 @@
+#!/bin/bash
+# generates a new notes file, with name and title
+
+n=1
+# set file contents
+if [[ $1 ]]; then
+    n=$1;
+fi;
+
+# set type of file
+if [[ $2 ]]; then
+    type="$2";
+else
+    type="Notes";
+fi;
+
+parse () {
+    title=`python -c "string = \"$type\";print(' '.join(string.split('-')).title())"`;
+
+    # new file
+    content=$(echo "Stephen A. Balaban
+$title $n - 
+`date`
+===============================================================================
+");
+}
+
+#
+# main
+#
+main () {
+    parse;
+    name="${n}_`echo $type | awk '{print tolower($1)}'`_`date --rfc-3339=date`.txt";
+    cmd='echo "$content" >> $name; vim $name';
+    echo "$cmd;"
+    eval $cmd;
+}
+main
