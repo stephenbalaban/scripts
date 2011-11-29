@@ -1,0 +1,3 @@
+#!/bin/bash
+printer=Brother5250;
+lpr -P $printer $1

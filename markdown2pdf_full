@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ $1 ]]; then
+    markdown2pdf --template=/data/school/fullpage.tex --bibliography=/data/school/sabalaba.bib $1  --csl=/data/school/chicago.csl
+else
+    markdown2pdf --template=/data/school/fullpage.tex --bibliography=/data/school/sabalaba.bib precis.txt --csl=/data/school/chicago.csl
+fi;
