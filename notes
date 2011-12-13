@@ -18,10 +18,10 @@ parse () {
     title=`python -c "string = \"$type\";print(' '.join(string.split('-')).title())"`;
 
     # new file
-    content=$(echo "Stephen A. Balaban
-$title $n - 
-`date`
-===============================================================================
+    content=$(echo "% Stephen A. Balaban
+% $title $n - 
+% `date --rfc-3339=date`
+
 ");
 }
 

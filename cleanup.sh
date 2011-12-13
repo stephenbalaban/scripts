@@ -1,5 +1,5 @@
 #!/bin/bash
-cleanup=("~/Downloads" 
+cleanup=("~/下载" 
          "~/tmp" 
          "~/builds")
 
