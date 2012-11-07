@@ -1,8 +1,11 @@
 #!/bin/bash
-musicdir="/home/sabalaba/音乐/";
-if [[ $1 ]]; then
-    tunes=$1;
+CLASSICAL=http://provisioning.streamtheworld.com/pls/KDFCFM.pls
+CLASSICAL=http://www.ibiblio.org/wcpe/wcpe.pls
+di=http://listen.di.fm/public3/
+if [[ "$1" == "di" ]]; then
+    tunes=$di$2
 else
-    tunes="trance";
+    tunes=$CLASSICAL
 fi;
-cvlc --qt-minimal-view --equalizer-preset dance --no-qt-error-dialogs $musicdir$tunes.pls
+echo "Playing music from $tunes"
+mplayer -playlist $tunes
