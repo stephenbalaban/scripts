@@ -1,0 +1,9 @@
+#!/bin/bash
+script=$1
+function deploy {
+    echo "# Deploying $script to /usr/bin/$script"
+    sudo cp $script /usr/bin/$script
+}
+for script in $@; do
+    deploy $script
+done;

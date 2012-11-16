@@ -1,0 +1,18 @@
+function print_lambda {
+    echo " 
+             LambdaLabsLambdaLabsLamb
+             a                      d
+             m                      a
+             b        \\\            L
+             d         \\\           a
+             a          \\\          b
+             L         //\\\         s
+             a        //  \\\        L
+             b       //    \\\       a
+             s                      m
+             L                      b
+             ambdaLabsLambdaLabsLambd
+ 
+"
+}
+print_lambda;

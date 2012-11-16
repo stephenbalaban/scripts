@@ -1,0 +1,9 @@
+#!/bin/bash
+if [[ $1 ]]; then
+    file=$1
+else
+    file=lambdapi.log
+fi;
+path=/var/log/lambda/$file;
+echo "# Log ($path):";
+cat $path;

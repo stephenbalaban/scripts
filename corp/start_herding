@@ -1,0 +1,15 @@
+#!/bin/bash
+if [[ $1 ]]; then
+    user=$1;
+else
+    user=$USER;
+fi;
+echo "# Going to /home/$user"
+cd /home/$user;
+echo "# Getting your vim config set up"
+git clone https://github.com/stephenbalaban/sabalabavim.git .vim;
+ln -s .vim/vimrc .vimrc;
+echo "# Eventually we'll add .bashrc, .emacs.d., and .screenrc"
+echo "#"
+echo "# Happy Hacking!"
+echo "#"
