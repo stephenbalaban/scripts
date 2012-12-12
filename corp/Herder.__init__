@@ -1,0 +1,67 @@
+#!/bin/bash
+function usage {
+    echo "# Usage ./Herder.__init__ <USERNAME> <PUBLICKEYFILE>"
+}
+function check_username {
+    username=$1
+    if [[ $username ]]; then
+        if [[ $(id $username) ]]; then
+            echo "# Username ($username) already taken!"
+            usage;
+            exit 0;
+        fi;
+    else
+        echo "# Invalid username: $username"
+        usage;
+        exit 0;
+    fi;
+}
+
+function check_input {
+    if [[ $1 && $2 ]]; then
+        NEW_HERDER=$1
+        check_username $NEW_HERDER;
+        PUB_KEY=$2
+    else
+        usage;
+        exit 0;
+    fi;
+} 
+
+function print_lambda {
+    echo "#
+#            LambdaLabsLambdaLabsLamb
+#            a                      d
+#            m                      a
+#            b        \\\            L
+#            d         \\\           a
+#            a          \\\          b
+#            L         //\\\         s
+#            a        //  \\\        L
+#            b       //    \\\       a
+#            s                      m
+#            L                      b
+#            ambdaLabsLambdaLabsLambd
+# 
+#            Herder($1)
+#"
+}
+
+function setup_user {
+    user=$1
+    pubkey=$2
+    nhome=/home/$user
+    sudo adduser $user
+    sudo -u $user mkdir $nhome/.ssh
+    sudo cp $pubkey $nhome/.ssh/authorized_keys
+    # reclaim the authed keys
+    sudo chown $user /home/$user/.ssh/authorized_keys
+    sudo chgrp $user /home/$user/.ssh/authorized_keys
+    sudo chmod 700 $nhome/.ssh
+    sudo chmod 600 $nhome/.ssh/authorized_keys 
+    sudo -u $user start_herding $user
+    print_lambda $user;
+}
+
+check_input $1 $2;
+setup_user $NEW_HERDER $PUB_KEY

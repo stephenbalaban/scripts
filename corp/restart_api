@@ -1,0 +1,17 @@
+#!/bin/bash
+SERVER=~/src/lambdapi/main.py
+PORTS="7357"
+function stop_all {
+    sudo kill -9 $(pgrep python); 
+}
+function start_server {
+    port=$1
+    echo "Starting server with port $port"
+    sudo nohup python $SERVER $port &
+}
+stop_all;
+for port in $PORTS; do
+    start_server $port;
+    echo "# Log Tail"
+    sudo tail nohup.out
+done;

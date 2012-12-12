@@ -1,0 +1,32 @@
+STARTPATH=~
+PRODUCTION_PATH=src/lambdapi/
+DOCS_PATH=src/lambdapi/docs
+
+function killrestart {
+    echo "# Killing and restarting superivsord"
+    cd $STARTPATH
+    sudo kill -9 $(pgrep supervisord);
+    sudo supervisord;
+}
+function gitpullorigin {
+    echo "# Pulling from $1"
+    p=$1;
+    cd $p;
+    git pull origin master;
+    cd;
+}
+function rollout {
+    lambda
+    echo "MM''''''''MMMMP'''''YMMM''MMMMMMMMM''MMMMMMMM  MMP'''''YMMM''MMMMM''MM''''''''M "
+    echo "MM  mmmm,  MM' .mmm. 'MM  MMMMMMMMM  MMMMMMMM  M' .mmm. 'MM  MMMMM  MMmmm  mmmM "
+    echo "M'        .MM  MMMMM  MM  MMMMMMMMM  MMMMMMMM  M  MMMMM  MM  MMMMM  MMMMM  MMMM "
+    echo "MM  MMMb. 'MM  MMMMM  MM  MMMMMMMMM  MMMMMMMM  M  MMMMM  MM  MMMMM  MMMMM  MMMM "
+    echo "MM  MMMMM  MM. 'MMM' .MM  MMMMMMMMM  MMMMMMMM  M. 'MMM' .MM  'MMM'  MMMMM  MMMM "
+    echo "MM  MMMMM  MMMb     dMMM         MM         M  MMb     dMMMb       dMMMMM  MMMM "
+    echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM "
+    echo "http://www.youtube.com/watch?v=t21DFnu00Dc"
+}
+gitpullorigin $PRODUCTION_PATH
+gitpullorigin $DOCS_PATH
+killrestart
+rollout
